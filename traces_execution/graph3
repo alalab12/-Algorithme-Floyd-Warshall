@@ -1,0 +1,73 @@
+Matrice des poids initiale (L)
+          0     1     2
+  0 |     0   INF   INF
+  1 |   INF     0   INF
+  2 |   INF   INF     0
+
+
+Étape k=0 : 
+Matrice des poids après l'étape k=0 (L)
+          0     1     2
+  0 |     0   INF   INF
+  1 |   INF     0   INF
+  2 |   INF   INF     0
+
+
+Matrice des successeurs après l'étape k=0 (P)
+          0     1     2
+  0 |  None  None  None
+  1 |  None  None  None
+  2 |  None  None  None
+
+
+Étape k=1 : 
+Matrice des poids après l'étape k=1 (L)
+          0     1     2
+  0 |     0   INF   INF
+  1 |   INF     0   INF
+  2 |   INF   INF     0
+
+
+Matrice des successeurs après l'étape k=1 (P)
+          0     1     2
+  0 |  None  None  None
+  1 |  None  None  None
+  2 |  None  None  None
+
+
+Étape k=2 : 
+Matrice des poids après l'étape k=2 (L)
+          0     1     2
+  0 |     0   INF   INF
+  1 |   INF     0   INF
+  2 |   INF   INF     0
+
+
+Matrice des successeurs après l'étape k=2 (P)
+          0     1     2
+  0 |  None  None  None
+  1 |  None  None  None
+  2 |  None  None  None
+
+
+Matrice L finale (distances minimales)
+          0     1     2
+  0 |     0   INF   INF
+  1 |   INF     0   INF
+  2 |   INF   INF     0
+
+
+Matrice P finale (successeurs)
+          0     1     2
+  0 |  None  None  None
+  1 |  None  None  None
+  2 |  None  None  None
+
+
+Le graphe n'est pas absorbant.
+Pas de chemin de 0 vers 1
+Pas de chemin de 0 vers 2
+Pas de chemin de 1 vers 0
+Pas de chemin de 1 vers 2
+Pas de chemin de 2 vers 0
+Pas de chemin de 2 vers 1
