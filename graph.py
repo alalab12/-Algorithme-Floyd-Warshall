@@ -100,6 +100,42 @@ def print_matrix(matrix, label=""):
         print()
 
     print()
+
+
+def get_matrix_print(matrix, label=""):
+    """
+    Renvoie la trace d'une matrice avec les indices de sommets et indique le nom de la matrice
+    """
+    txt = ""
+    n = len(matrix)
+
+    if label:
+        txt += label + "\n"
+
+    # En-tête colonnes
+    txt += "     "
+    for j in range(n):
+        txt += f"{j:>6}"
+    txt += "\n"
+
+    # Lignes
+    for i in range(n):
+        txt += f"{i:>3} |"
+
+        for j in range(n):
+            val = matrix[i][j]
+
+            if val == float('inf'):
+                s = "INF"
+            else:
+                s = str(val)
+
+            txt += f"{s:>6}"
+
+        txt += "\n"
+
+    txt += "\n\n"
+    return txt
     
 
 

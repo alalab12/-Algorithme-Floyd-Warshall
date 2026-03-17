@@ -1,7 +1,7 @@
 import os
 from absorb import absorb
 from path import get_path
-from graph import load_graph, print_matrix
+from graph import load_graph, print_matrix, get_matrix_print
 from floyd import floyd_warshall
 
 
@@ -16,23 +16,27 @@ def main():
     num_vertices = load[0]
     distance_matrix = load[1]
 
-
-    print_matrix(distance_matrix, label="Matrice des poids initiale (L)")
+    trace_execution = ""
+    
+    trace_execution += get_matrix_print(distance_matrix, label="Matrice des poids initiale (L)")
+    #print_matrix(distance_matrix, label="Matrice des poids initiale (L)")
 
     #Appel de Floyd-Warshall
     fw = floyd_warshall(distance_matrix)
     L = fw[0]   # matrice des distances minimales
     P = fw[1]   # matrice des successeurs
+    trace_execution += fw[2] # trace de l'exécution de l'algorithme
 
-
-    print_matrix(L, label="Matrice L finale (distances minimales)")
-    print_matrix(P, label="Matrice P finale (successeurs)")
+    trace_execution += get_matrix_print(L, label="Matrice L finale (distances minimales)")
+    trace_execution += get_matrix_print(P, label="Matrice P finale (successeurs)")
+    #print_matrix(L, label="Matrice L finale (distances minimales)")
+    #print_matrix(P, label="Matrice P finale (successeurs)")
     
     if absorb(L):
-        print("Le graphe est absorbant.")
+        trace_execution += "Le graphe est absorbant.\n"
     else:
         # Choix 1 On affiche tout
-        print("Le graphe n'est pas absorbant.")
+        trace_execution += "Le graphe n'est pas absorbant.\n"
         # on affihe les chemins entre tt les sommets et tt les autres
         num_vertices = len(P)
         for i in range(num_vertices):
@@ -40,10 +44,11 @@ def main():
                 if i != j: # on affiche pas le chemin de i à lui même parce que soit c'est direct lui même soit si c'est moins que ça alors c'est absorbant or là le graphe est pas absorbant 
                     path = get_path(P, i, j)
                     if path is not None:
-                        print(f"Le chemin de {i} vers {j} : {' -> '.join(map(str, path))}")
+                        trace_execution += f"Le chemin de {i} vers {j} : {' -> '.join(map(str, path))}\n"
                     else:
-                        print(f"Pas de chemin de {i} vers {j}")
-        
+                        trace_execution += f"Pas de chemin de {i} vers {j}\n"
+
+    
         # Choix 2 On affiche que les chemins demandé
         """
         choix = "oui"
@@ -66,6 +71,12 @@ def main():
                     print(f"-> Chemin : {' -> '.join(map(str, chemin))}")
 
         """
+    print(trace_execution)
+
+    dir = "traces_execution"
+    file = os.path.join(dir,filename)
+    with open(file, "w", encoding="utf-8") as f:
+        f.write(trace_execution)
 
 if __name__ == "__main__" :
     main()

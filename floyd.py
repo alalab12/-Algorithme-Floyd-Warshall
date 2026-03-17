@@ -1,4 +1,4 @@
-from graph import print_matrix
+from graph import print_matrix, get_matrix_print
 
 
 INF = float('inf')
@@ -8,7 +8,8 @@ def floyd_warshall(distance_matrix):
     Implémentation de l'algorithme de Floyd-Warshall pour trouver les plus courts chemins 
     entre tous les couples de sommets dans un graphe pondéré.
     """
-    
+    trace = ""
+
     num_vertices = len(distance_matrix)
 
     #1) On copie de la matrice de poids initiale dans L
@@ -33,7 +34,7 @@ def floyd_warshall(distance_matrix):
 
     #3) On itère sur tous les sommets intermédiaires k
     for k in range(num_vertices):
-        print(f"Étape k={k} :")
+        trace += f"Étape k={k} : \n"
 
         for i in range(num_vertices):
 
@@ -46,7 +47,7 @@ def floyd_warshall(distance_matrix):
                         L[i][j] = new_distance
                         P[i][j] = P[i][k] #le premier sommet après i pour aller vers j est celui de i->k
 
-        print_matrix(L, label=f"Matrice des poids après l'étape k={k} (L)")
-        print_matrix(P, label=f"Matrice des successeurs après l'étape k={k} (P)")
+        trace += get_matrix_print(L, label=f"Matrice des poids après l'étape k={k} (L)")
+        trace += get_matrix_print(P, label=f"Matrice des successeurs après l'étape k={k} (P)")
 
-    return L, P
+    return L, P, trace
