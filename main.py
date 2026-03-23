@@ -40,6 +40,7 @@ def main():
         
         if absorb(L):
             trace_execution += "Le graphe est absorbant.\n"
+            print(trace_execution)
         else:
             # Choix 1 On affiche tout
             trace_execution += "Le graphe n'est pas absorbant.\n"
